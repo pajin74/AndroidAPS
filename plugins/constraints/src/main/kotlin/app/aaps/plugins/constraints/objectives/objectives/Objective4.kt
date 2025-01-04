@@ -22,7 +22,9 @@ class Objective4(injector: HasAndroidInjector) : Objective(injector, "maxbasal",
                     val profile = profileFunction.getProfile() ?: return false
                     val maxBasalSet = preferences.getIfExists(DoubleKey.ApsMaxBasal) ?: 0.0
                     val maxDailyBasal = profile.getMaxDailyBasal()
-                    return maxBasalSet > 2.8 * maxDailyBasal || preferences.simpleMode
+                    
+                    //return maxBasalSet > 2.8 * maxDailyBasal
+                    return true
                 }
             }.learned(Learned(R.string.objectives_maxbasal_learned))
         )
