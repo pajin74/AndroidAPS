@@ -20,8 +20,8 @@ class ReservoirIconComplication : BaseComplicationProviderService() {
         if (dataType == ComplicationData.TYPE_SHORT_TEXT) {
             val builder = ComplicationData.Builder(ComplicationData.TYPE_SHORT_TEXT)
                 .setShortText(ComplicationText.plainText(raw.status[0].reservoirString))
-                .setIcon(Icon.createWithResource(this, R.drawable.ic_tdd))
-                .setBurnInProtectionIcon(Icon.createWithResource(this, R.drawable.ic_tdd))
+                .setIcon(Icon.createWithResource(this, R.drawable.ic_ins))
+                .setBurnInProtectionIcon(Icon.createWithResource(this, R.drawable.ic_ins_burnin))
                 .setTapAction(complicationPendingIntent)
             complicationData = builder.build()
         } else {

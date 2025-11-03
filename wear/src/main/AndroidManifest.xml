@@ -249,7 +249,7 @@
         <service
             android:name=".complications.ReservoirIconComplication"
             android:exported="true"
-            android:icon="@drawable/ic_tdd"
+            android:icon="@drawable/ic_ins"
             android:label="@string/complication_reservoir_icon"
             android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">
             <intent-filter>
