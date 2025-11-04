@@ -17,15 +17,32 @@ class ReservoirIconComplication : BaseComplicationProviderService() {
 
     override fun buildComplicationData(dataType: Int, raw: RawDisplayData, complicationPendingIntent: PendingIntent): ComplicationData? {
         var complicationData: ComplicationData? = null
-        if (dataType == ComplicationData.TYPE_SHORT_TEXT) {
-            val builder = ComplicationData.Builder(ComplicationData.TYPE_SHORT_TEXT)
-                .setShortText(ComplicationText.plainText(raw.status[0].reservoirString))
-                .setIcon(Icon.createWithResource(this, R.drawable.ic_ins))
-                .setBurnInProtectionIcon(Icon.createWithResource(this, R.drawable.ic_ins_burnin))
-                .setTapAction(complicationPendingIntent)
-            complicationData = builder.build()
-        } else {
-            aapsLogger.warn(LTag.WEAR, "Unexpected complication type $dataType")
+
+        when (dataType) {
+            ComplicationData.TYPE_RANGED_VALUE -> {
+                val builder = ComplicationData.Builder(ComplicationData.TYPE_RANGED_VALUE)
+                    .setMinValue(0f)
+                    .setMaxValue(300f)
+                    .setValue(raw.status[0].reservoir.toFloat())
+                    .setShortText(ComplicationText.plainText(raw.status[0].reservoirString))
+                    .setIcon(Icon.createWithResource(this, R.drawable.ic_ins))
+                    .setBurnInProtectionIcon(Icon.createWithResource(this, R.drawable.ic_ins_burnin))
+                    .setTapAction(complicationPendingIntent)
+                complicationData = builder.build()
+            }
+
+            ComplicationData.TYPE_SHORT_TEXT   -> {
+                val builder = ComplicationData.Builder(ComplicationData.TYPE_SHORT_TEXT)
+                    .setShortText(ComplicationText.plainText(raw.status[0].reservoirString))
+                    .setIcon(Icon.createWithResource(this, R.drawable.ic_ins))
+                    .setBurnInProtectionIcon(Icon.createWithResource(this, R.drawable.ic_ins_burnin))
+                    .setTapAction(complicationPendingIntent)
+                complicationData = builder.build()
+            }
+
+            else -> {
+                aapsLogger.warn(LTag.WEAR, "Unexpected complication type $dataType")
+            }
         }
         return complicationData
     }
