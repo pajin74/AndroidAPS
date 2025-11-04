@@ -13,6 +13,7 @@ import app.aaps.wear.complications.IobDetailedComplication
 import app.aaps.wear.complications.IobIconComplication
 import app.aaps.wear.complications.LongStatusComplication
 import app.aaps.wear.complications.LongStatusFlippedComplication
+import app.aaps.wear.complications.ReservoirIconComplication
 import app.aaps.wear.complications.SgvComplication
 import app.aaps.wear.complications.UploaderBatteryComplication
 import app.aaps.wear.complications.WallpaperComplication
@@ -48,6 +49,7 @@ abstract class WearServicesModule {
     @ContributesAndroidInjector abstract fun contributesComplicationTapBroadcastReceiver(): ComplicationTapBroadcastReceiver
     @ContributesAndroidInjector abstract fun contributesIobDetailedComplication(): IobDetailedComplication
     @ContributesAndroidInjector abstract fun contributesIobIconComplication(): IobIconComplication
+    @ContributesAndroidInjector abstract fun contributesReservoirIconComplication(): ReservoirIconComplication
     @ContributesAndroidInjector abstract fun contributesLongStatusComplication(): LongStatusComplication
     @ContributesAndroidInjector abstract fun contributesLongStatusFlippedComplication(): LongStatusFlippedComplication
     @ContributesAndroidInjector abstract fun contributesSgvComplication(): SgvComplication
