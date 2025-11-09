@@ -360,7 +360,7 @@ abstract class BaseComplicationProviderService : ComplicationProviderService() {
     inner class MessageReceiver : BroadcastReceiver() {
 
         override fun onReceive(context: Context, intent: Intent) {
-            updateAll()
+            //updateAll()
         }
     }
 
