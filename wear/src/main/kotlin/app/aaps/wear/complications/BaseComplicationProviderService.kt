@@ -176,7 +176,7 @@ abstract class BaseComplicationProviderService : ComplicationProviderService() {
         localBroadcastManager = LocalBroadcastManager.getInstance(this)
         messageReceiver?.let { localBroadcastManager?.registerReceiver(it, messageFilter) }
         rxBus.send(EventWearToMobile(ActionResendData("BaseComplicationProviderService")))
-        checkIfUpdateNeeded()
+        //checkIfUpdateNeeded()
     }
 
     /*
