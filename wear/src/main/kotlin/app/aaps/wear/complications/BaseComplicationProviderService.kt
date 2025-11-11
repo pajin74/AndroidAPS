@@ -176,7 +176,7 @@ abstract class BaseComplicationProviderService : ComplicationProviderService() {
         localBroadcastManager = LocalBroadcastManager.getInstance(this)
         messageReceiver?.let { localBroadcastManager?.registerReceiver(it, messageFilter) }
         rxBus.send(EventWearToMobile(ActionResendData("BaseComplicationProviderService")))
-        //checkIfUpdateNeeded()
+        checkIfUpdateNeeded()
     }
 
     /*
@@ -260,7 +260,7 @@ abstract class BaseComplicationProviderService : ComplicationProviderService() {
      */
     private fun checkIfUpdateNeeded() {
         aapsLogger.warn(LTag.WEAR, "Pending check if update needed - " + persistence.getString(Persistence.KEY_COMPLICATIONS, ""))
-        inevitable.task(TASK_ID_REFRESH_COMPLICATION, 55 * Constants.SECOND_IN_MS) {
+        inevitable.task(TASK_ID_REFRESH_COMPLICATION, 120 * Constants.SECOND_IN_MS) {
             if (wearUtil.isBelowRateLimit("complication-checkIfUpdateNeeded", 5)) {
                 aapsLogger.warn(LTag.WEAR, "Checking if update needed")
                 requestUpdateIfSinceChanged()
