@@ -4,6 +4,7 @@ import app.aaps.wear.comm.DataLayerListenerServiceWear
 import app.aaps.wear.complications.BaseComplicationProviderService
 import app.aaps.wear.complications.BrIobComplication
 import app.aaps.wear.complications.BrComplication
+import app.aaps.wear.complications.BrIconComplication
 import app.aaps.wear.complications.BrCobIobComplication
 import app.aaps.wear.complications.CobDetailedComplication
 import app.aaps.wear.complications.CobIconComplication
@@ -14,6 +15,7 @@ import app.aaps.wear.complications.IobIconComplication
 import app.aaps.wear.complications.LongStatusComplication
 import app.aaps.wear.complications.LongStatusFlippedComplication
 import app.aaps.wear.complications.ReservoirIconComplication
+import app.aaps.wear.complications.TmpTargetComplication
 import app.aaps.wear.complications.SgvComplication
 import app.aaps.wear.complications.UploaderBatteryComplication
 import app.aaps.wear.complications.WallpaperComplication
@@ -43,6 +45,7 @@ abstract class WearServicesModule {
     @ContributesAndroidInjector abstract fun contributesBrCobIobComplication(): BrCobIobComplication
     @ContributesAndroidInjector abstract fun contributesBrIobComplication(): BrIobComplication
     @ContributesAndroidInjector abstract fun contributesBrComplication(): BrComplication
+    @ContributesAndroidInjector abstract fun contributesBrIconComplication(): BrIconComplication
     @ContributesAndroidInjector abstract fun contributesCobDetailedComplication(): CobDetailedComplication
     @ContributesAndroidInjector abstract fun contributesCobIconComplication(): CobIconComplication
     @ContributesAndroidInjector abstract fun contributesCobIobComplication(): CobIobComplication
@@ -50,6 +53,7 @@ abstract class WearServicesModule {
     @ContributesAndroidInjector abstract fun contributesIobDetailedComplication(): IobDetailedComplication
     @ContributesAndroidInjector abstract fun contributesIobIconComplication(): IobIconComplication
     @ContributesAndroidInjector abstract fun contributesReservoirIconComplication(): ReservoirIconComplication
+    @ContributesAndroidInjector abstract fun contributesTmpTargetComplication(): TmpTargetComplication
     @ContributesAndroidInjector abstract fun contributesLongStatusComplication(): LongStatusComplication
     @ContributesAndroidInjector abstract fun contributesLongStatusFlippedComplication(): LongStatusFlippedComplication
     @ContributesAndroidInjector abstract fun contributesSgvComplication(): SgvComplication

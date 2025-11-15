@@ -175,6 +175,24 @@
         </service>
 
         <service
+            android:name=".complications.BrIconComplication"
+            android:exported="true"
+            android:icon="@drawable/ic_br"
+            android:label= "@string/complication_br_icon"
+            android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">
+            <intent-filter>
+                <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.wearable.complications.SUPPORTED_TYPES"
+                android:value="SHORT_TEXT" />
+            <meta-data
+                android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
+                android:value="300" />
+        </service>
+
+        <service
             android:name=".complications.CobIobComplication"
             android:exported="true"
             android:icon="@drawable/ic_cob_iob"
@@ -251,6 +269,24 @@
             android:exported="true"
             android:icon="@drawable/ic_ins"
             android:label="@string/complication_reservoir_icon"
+            android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">
+            <intent-filter>
+                <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.wearable.complications.SUPPORTED_TYPES"
+                android:value="RANGED_VALUE, SHORT_TEXT" />
+            <meta-data
+                android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
+                android:value="600" />
+        </service>
+
+        <service
+            android:name=".complications.TmpTargetComplication"
+            android:exported="true"
+            android:icon="@drawable/ic_temptarget_high"
+            android:label="@string/complication_tmp_target"
             android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">
             <intent-filter>
                 <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
