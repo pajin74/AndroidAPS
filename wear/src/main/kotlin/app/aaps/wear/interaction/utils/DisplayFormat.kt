@@ -75,7 +75,7 @@ class DisplayFormat @Inject internal constructor() {
             return minutes + " " + deltaSymbol() + delta
         }
         val shortDelta = SmallestDoubleString(rawDelta).minimise(MAX_FIELD_LEN_SHORT - (1 + minutes.length))
-        return "$minutes $shortDelta"
+        return "$shortDelta ($minutes)"
     }
 
     fun longGlucoseLine(raw: RawDisplayData, dataSet: Int): String {
