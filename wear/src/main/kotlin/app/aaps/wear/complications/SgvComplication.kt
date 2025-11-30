@@ -25,12 +25,22 @@ class SgvComplication : BaseComplicationProviderService() {
         when (dataType) {
             ComplicationData.TYPE_SHORT_TEXT -> {
                 val builder = ComplicationData.Builder(ComplicationData.TYPE_SHORT_TEXT)
-                    //.setShortText(ComplicationText.plainText(raw.singleBg[0].sgvString + raw.singleBg[0].slopeArrow + "\uFE0E"))
-                    .setShortText(ComplicationText.plainText(raw.singleBg[0].sgvString))
-                    .setShortTitle(ComplicationText.plainText(raw.singleBg[0].slopeArrow + " " + displayFormat.shortTrend(raw, 0)))
+                    .setShortText(ComplicationText.plainText(raw.singleBg[0].sgvString + raw.singleBg[0].slopeArrow))
+                    .setShortTitle(ComplicationText.plainText( displayFormat.shortTrend(raw, 0)))
                     .setTapAction(complicationPendingIntent)
                 complicationData = builder.build()
             }
+            ComplicationData.TYPE_RANGED_VALUE -> {
+                val builder = ComplicationData.Builder(ComplicationData.TYPE_RANGED_VALUE)
+                    .setMinValue(raw.singleBg[0].low.toFloat())
+                    .setMaxValue(raw.singleBg[0].high.toFloat())
+                    .setValue(raw.singleBg[0].sgv.toFloat())
+                    .setShortText(ComplicationText.plainText(raw.singleBg[0].sgvString + raw.singleBg[0].slopeArrow))
+                    .setShortTitle(ComplicationText.plainText( displayFormat.shortTrend(raw, 0)))
+                    .setTapAction(complicationPendingIntent)
+                complicationData = builder.build()
+            }
+
 
             else                             -> aapsLogger.warn(LTag.WEAR, "Unexpected complication type $dataType")
         }
