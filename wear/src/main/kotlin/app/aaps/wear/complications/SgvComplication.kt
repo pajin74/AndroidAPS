@@ -24,13 +24,11 @@ class SgvComplication : BaseComplicationProviderService() {
     override fun buildComplicationData(dataType: Int, raw: RawDisplayData, complicationPendingIntent: PendingIntent): ComplicationData? {
         var complicationData: ComplicationData? = null
 
-        var shortText = "--";
-        var shotTitle = "--"
+        var shortText = "-.-";
         var sgv = 0.0;
 
         if (wearUtil.msSince(raw.singleBg[0].timeStamp) < Constants.STALE_MS) {
             shortText = raw.singleBg[0].sgvString + raw.singleBg[0].slopeArrow;
-            shotTitle = displayFormat.shortTrend(raw, 0)
             sgv = raw.singleBg[0].sgv;
         }
 
@@ -38,7 +36,7 @@ class SgvComplication : BaseComplicationProviderService() {
             ComplicationData.TYPE_SHORT_TEXT -> {
                 val builder = ComplicationData.Builder(ComplicationData.TYPE_SHORT_TEXT)
                     .setShortText(ComplicationText.plainText(shortText))
-                    .setShortTitle(ComplicationText.plainText( shotTitle))
+                    .setShortTitle(ComplicationText.plainText( displayFormat.shortTrend(raw, 0)))
                     .setTapAction(complicationPendingIntent)
                 complicationData = builder.build()
             }
@@ -48,7 +46,7 @@ class SgvComplication : BaseComplicationProviderService() {
                     .setMaxValue(raw.singleBg[0].high.toFloat())
                     .setValue(sgv.toFloat())
                     .setShortText(ComplicationText.plainText(shortText))
-                    .setShortTitle(ComplicationText.plainText( shotTitle))
+                    .setShortTitle(ComplicationText.plainText( displayFormat.shortTrend(raw, 0)))
                     .setTapAction(complicationPendingIntent)
                 complicationData = builder.build()
             }
