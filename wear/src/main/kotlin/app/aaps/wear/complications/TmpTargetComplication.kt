@@ -24,7 +24,8 @@ class TmpTargetComplication : BaseComplicationProviderService() {
         var complicationData: ComplicationData? = null
         if (dataType == ComplicationData.TYPE_SHORT_TEXT) {
             val builder = ComplicationData.Builder(ComplicationData.TYPE_SHORT_TEXT)
-                .setShortText(ComplicationText.plainText(raw.status[0].tempTarget + " (" + raw.status[0].tempTargetLevel +  ")"))
+                .setShortText(ComplicationText.plainText(raw.status[0].tempTarget ))
+                .setShortTitle(ComplicationText.plainText(raw.status[0].tempTargetLevel.toString()))
                 .setTapAction(complicationPendingIntent)
             complicationData = builder.build()
         } else {

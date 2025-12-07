@@ -220,13 +220,13 @@ abstract class BaseComplicationProviderService : ComplicationProviderService() {
                 buildNoSyncComplicationData(dataType, raw, complicationPendingIntent, infoToast, persistence.whenDataUpdated())
             }
 
-            wearUtil.msSince(raw.singleBg[0].timeStamp) > Constants.STALE_MS     -> {
+            //wearUtil.msSince(raw.singleBg[0].timeStamp) > Constants.STALE_MS     -> {
                 // data arriving from phone AAPS, but it is outdated (uploader/NS/xDrip/Sensor error)
-                val infoToast = getTapWarningSinceIntent(
-                    applicationContext, thisProvider, complicationId, ComplicationAction.WARNING_OLD, raw.singleBg[0].timeStamp
-                )
-                buildOutdatedComplicationData(dataType, raw, complicationPendingIntent, infoToast, raw.singleBg[0].timeStamp)
-            }
+                //val infoToast = getTapWarningSinceIntent(
+                    //applicationContext, thisProvider, complicationId, ComplicationAction.WARNING_OLD, raw.singleBg[0].timeStamp
+                //)
+                //buildOutdatedComplicationData(dataType, raw, complicationPendingIntent, infoToast, raw.singleBg[0].timeStamp)
+            //}
 
             else                                                                 -> {
                 // data is up-to-date, we can render standard complication
