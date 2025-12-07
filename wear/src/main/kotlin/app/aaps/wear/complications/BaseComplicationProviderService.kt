@@ -212,21 +212,21 @@ abstract class BaseComplicationProviderService : ComplicationProviderService() {
         // by each render we clear stale flag to ensure it is re-rendered at next refresh detection round
         persistence.putBoolean(Persistence.KEY_STALE_REPORTED, false)
         val complicationData: ComplicationData? = when {
-            wearUtil.msSince(persistence.whenDataUpdated()) > Constants.STALE_MS -> {
+            //wearUtil.msSince(persistence.whenDataUpdated()) > Constants.STALE_MS -> {
                 // no new data arrived - probably configuration or connection error
-                val infoToast = getTapWarningSinceIntent(
-                    applicationContext, thisProvider, complicationId, ComplicationAction.WARNING_SYNC, persistence.whenDataUpdated()
-                )
-                buildNoSyncComplicationData(dataType, raw, complicationPendingIntent, infoToast, persistence.whenDataUpdated())
-            }
-
-            //wearUtil.msSince(raw.singleBg[0].timeStamp) > Constants.STALE_MS     -> {
-                // data arriving from phone AAPS, but it is outdated (uploader/NS/xDrip/Sensor error)
                 //val infoToast = getTapWarningSinceIntent(
-                    //applicationContext, thisProvider, complicationId, ComplicationAction.WARNING_OLD, raw.singleBg[0].timeStamp
+                //    applicationContext, thisProvider, complicationId, ComplicationAction.WARNING_SYNC, persistence.whenDataUpdated()
                 //)
-                //buildOutdatedComplicationData(dataType, raw, complicationPendingIntent, infoToast, raw.singleBg[0].timeStamp)
+                //buildNoSyncComplicationData(dataType, raw, complicationPendingIntent, infoToast, persistence.whenDataUpdated())
             //}
+
+            wearUtil.msSince(raw.singleBg[0].timeStamp) > Constants.STALE_MS     -> {
+                // data arriving from phone AAPS, but it is outdated (uploader/NS/xDrip/Sensor error)
+                val infoToast = getTapWarningSinceIntent(
+                    applicationContext, thisProvider, complicationId, ComplicationAction.WARNING_OLD, raw.singleBg[0].timeStamp
+                )
+                buildOutdatedComplicationData(dataType, raw, complicationPendingIntent, infoToast, raw.singleBg[0].timeStamp)
+            }
 
             else                                                                 -> {
                 // data is up-to-date, we can render standard complication
