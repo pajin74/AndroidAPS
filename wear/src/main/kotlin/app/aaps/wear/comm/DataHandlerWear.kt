@@ -1,7 +1,6 @@
 package app.aaps.wear.comm
 
 import app.aaps.wear.interaction.actions.WizardResultActivity
-import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -45,6 +44,9 @@ import app.aaps.wear.complications.SgvComplication
 import app.aaps.wear.complications.SgvComplicationExt1
 import app.aaps.wear.complications.SgvComplicationExt2
 import app.aaps.wear.complications.UploaderBatteryComplication
+import app.aaps.wear.complications.BrIconComplication
+import app.aaps.wear.complications.TmpTargetComplication
+import app.aaps.wear.complications.ReservoirIconComplication
 import app.aaps.wear.data.ComplicationDataRepository
 import app.aaps.wear.interaction.WatchfaceConfigurationActivity
 import app.aaps.wear.interaction.actions.AcceptActivity
@@ -470,7 +472,11 @@ class DataHandlerWear @Inject constructor(
             BrCobIobComplicationExt1::class.java,
             BrCobIobComplicationExt2::class.java,
             // Battery complication
-            UploaderBatteryComplication::class.java
+            UploaderBatteryComplication::class.java,
+            // Added complication
+            BrIconComplication::class.java,
+            ReservoirIconComplication::class.java,
+            TmpTargetComplication::class.java
             // Note: WallpaperComplication is abstract, subclasses will auto-update
         )
 
